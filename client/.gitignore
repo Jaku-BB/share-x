@@ -1,0 +1,7 @@
+node_modules
+.next
+out
+build
+.DS_Store
+.idea
+next-env.d.ts
