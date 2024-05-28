@@ -1,4 +1,5 @@
 import "./style.css";
+import { Footer } from "~/app/components/footer";
 import { Header } from "~/app/components/header";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
@@ -15,6 +16,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <div className="min-h-dvh px-2 py-8 grid grid-rows-[auto,_1fr,_auto] gap-8">
           <Header />
           {children}
+          <Footer />
         </div>
       </body>
     </html>
