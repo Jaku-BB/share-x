@@ -12,7 +12,7 @@ export const FileForm = () => {
     <form className="max-w-xs w-full flex flex-col gap-4">
       <label
         className={classNameMerge(
-          "flex flex-col gap-3 relative border-dashed group has-[:focus]:border-indigo-400 has-[:focus]:bg-indigo-50 hover:border-indigo-400 hover:bg-indigo-50 transition-colors text-center py-4 px-8 border border-neutral-400 items-center rounded-xl",
+          "flex flex-col gap-3 cursor-pointer relative border-dashed group has-[:focus]:border-indigo-400 has-[:focus]:bg-indigo-50 hover:border-indigo-400 hover:bg-indigo-50 transition-colors text-center py-4 px-8 border border-neutral-400 items-center rounded-xl",
           isFileOverInput && "border-indigo-400 bg-indigo-50",
         )}
         onDragEnter={() => setIsFileOverInput(true)}
@@ -30,10 +30,7 @@ export const FileForm = () => {
         <span className="text-xs text-neutral-500">
           Up to 500 <abbr>MB</abbr>
         </span>
-        <input
-          type="file"
-          className="absolute top-0 left-0 h-full w-full opacity-0 cursor-pointer"
-        />
+        <input type="file" className="visually-hidden" />
       </label>
       <Button>Share your file</Button>
     </form>
