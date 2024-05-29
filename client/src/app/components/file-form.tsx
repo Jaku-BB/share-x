@@ -7,7 +7,7 @@ import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 
 interface FormData {
-  file: File;
+  file: FileList;
 }
 
 export const FileForm = () => {
@@ -42,7 +42,7 @@ export const FileForm = () => {
             Drop your file or click here
           </span>
           <span className="text-xs text-neutral-500">
-            Up to 500 <abbr>MB</abbr>
+            Up to 512 <abbr>MB</abbr>
           </span>
           <input
             type="file"
@@ -50,7 +50,12 @@ export const FileForm = () => {
             aria-invalid={!!formState.errors.file}
             {...register("file", {
               required: "File is required!",
-              // Add a custom validation rule to check the file size
+              validate: (value) => {
+                return (
+                  value[0].size <= 512_000_000 ||
+                  "File size should be less than 512 MB!"
+                );
+              },
             })}
           />
         </label>
