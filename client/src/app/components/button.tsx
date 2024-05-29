@@ -18,7 +18,7 @@ export const Button = ({
   return (
     <button
       className={classNameMerge(
-        "font-medium py-1.5 text-[15px] flex justify-center transition-colors hover:bg-indigo-400 bg-indigo-500 rounded-xl text-white",
+        "font-medium py-1.5 text-[15px] flex justify-center focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-300 transition-colors hover:bg-indigo-400 bg-indigo-500 rounded-xl text-white",
         (disabled || isLoading) && "opacity-50 cursor-not-allowed",
         className,
       )}
