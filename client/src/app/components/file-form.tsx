@@ -2,6 +2,7 @@
 
 import { Button } from "~/app/components/button";
 import { classNameMerge } from "~/app/utils/class-name-merge";
+import { getPrettySize } from "~/app/utils/get-pretty-size";
 import { ArrowUpFromLine } from "lucide-react";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
@@ -12,10 +13,20 @@ interface FormData {
 
 export const FileForm = () => {
   const [isFileOverInput, setIsFileOverInput] = useState(false);
-  const { handleSubmit, register, formState } = useForm<FormData>();
+  const [isLoading, setIsLoading] = useState(false);
+  const { handleSubmit, register, formState, watch } = useForm<FormData>();
+
+  const fileInputValue = watch("file");
+  const fileInputError = formState.errors.file;
 
   const onFormSubmission: SubmitHandler<FormData> = (data) => {
     console.log(data);
+
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
   };
 
   return (
@@ -47,7 +58,7 @@ export const FileForm = () => {
           <input
             type="file"
             className="visually-hidden"
-            aria-invalid={!!formState.errors.file}
+            aria-invalid={!!fileInputError}
             {...register("file", {
               required: "File is required!",
               validate: (value) => {
@@ -59,13 +70,24 @@ export const FileForm = () => {
             })}
           />
         </label>
-        {formState.errors.file && (
+        {fileInputError && (
           <span role="alert" className="text-xs text-center text-rose-500">
-            {formState.errors.file.message}
+            {fileInputError.message}
           </span>
         )}
+        {fileInputValue && !fileInputError && (
+          <div className="flex items-center text-[15px] text-neutral-900 bg-indigo-50 rounded-xl py-1.5 px-3 justify-between gap-8">
+            <span className="truncate" title={fileInputValue[0].name}>
+              {fileInputValue[0].name}
+            </span>
+            <span className="shrink-0">
+              {getPrettySize(fileInputValue[0].size)[0]}{" "}
+              <abbr>{getPrettySize(fileInputValue[0].size)[1]}</abbr>
+            </span>
+          </div>
+        )}
       </div>
-      <Button>Share your file</Button>
+      <Button isLoading={isLoading}>Share</Button>
     </form>
   );
 };

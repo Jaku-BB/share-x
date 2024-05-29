@@ -25,7 +25,11 @@ export const Button = ({
       disabled={disabled || isLoading}
     >
       {isLoading ? (
-        <LoaderCircle size={22} className="animate-spin" />
+        <LoaderCircle
+          size={22}
+          className="animate-spin"
+          aria-label="Loading..."
+        />
       ) : (
         children
       )}
