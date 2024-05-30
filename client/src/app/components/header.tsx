@@ -4,7 +4,7 @@ export const Header = () => {
       <h1 className="text-neutral-900 text-4xl font-medium md:text-5xl">
         ShareX
       </h1>
-      <span className="bg-indigo-50 border uppercase border-indigo-500 md:text-lg font-black text-indigo-400 rounded py-1 px-2">
+      <span className="bg-indigo-50 border uppercase border-indigo-500 md:text-lg font-black text-indigo-400 rounded-xl py-1 px-2">
         Free
       </span>
     </header>
