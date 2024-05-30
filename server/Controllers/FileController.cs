@@ -52,6 +52,26 @@ public class FileController : Controller
     [HttpGet("{id}")]
     public IActionResult GetFile(string id)
     {
-        return Ok();
+        string storagePath = Path.Combine(Directory.GetCurrentDirectory(), "Storage");
+
+        string fileMapPath = Path.Combine(storagePath, "FileMap.json");
+
+        if (!System.IO.File.Exists(fileMapPath)) return NotFound();
+
+        string fileMapJson = System.IO.File.ReadAllText(fileMapPath);
+
+        var fileMap = JsonSerializer.Deserialize<List<FileMap>>(fileMapJson);
+
+        var file = fileMap?.FirstOrDefault(x => x.FileId == id);
+
+        if (file == null) return NotFound();
+
+        string extension = Path.GetExtension(file.OriginalFileName);
+
+        string filePath = Path.Combine(storagePath, id + extension);
+
+        if (!System.IO.File.Exists(filePath)) return NotFound();
+
+        return PhysicalFile(filePath, "application/octet-stream", file.OriginalFileName);
     }
 }
