@@ -12,6 +12,12 @@ public class FileController : Controller
     [HttpPost]
     public IActionResult SaveFile(IFormFile file)
     {
+        if (file == null || file.Length == 0)
+            return new JsonResult(new { message = "File is empty!" })
+            {
+                StatusCode = StatusCodes.Status400BadRequest
+            };
+
         if (file.Length > MaximumFileSize)
             return new JsonResult(new { message = "File is too large! " })
             {
