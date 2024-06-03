@@ -10,4 +10,8 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <_ContentIncludedByDefault Remove="Storage\FileMap.json"/>
+    </ItemGroup>
+
 </Project>
