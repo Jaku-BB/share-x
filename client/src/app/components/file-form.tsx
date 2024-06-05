@@ -1,8 +1,8 @@
 "use client";
 
 import { Button } from "~/app/components/button";
+import { FilePreview } from "~/app/components/file-preview";
 import { classNameMerge } from "~/app/utils/class-name-merge";
-import { getPrettySize } from "~/app/utils/get-pretty-size";
 import { ArrowUpFromLine } from "lucide-react";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
@@ -76,15 +76,7 @@ export const FileForm = () => {
           </span>
         )}
         {fileInputValue && !fileInputError && (
-          <div className="flex items-center text-[15px] text-neutral-900 bg-indigo-50 rounded-xl py-1.5 px-3 justify-between gap-8">
-            <span className="truncate" title={fileInputValue[0].name}>
-              {fileInputValue[0].name}
-            </span>
-            <span className="shrink-0">
-              {getPrettySize(fileInputValue[0].size)[0]}{" "}
-              <abbr>{getPrettySize(fileInputValue[0].size)[1]}</abbr>
-            </span>
-          </div>
+          <FilePreview file={fileInputValue[0]} />
         )}
       </div>
       <Button isLoading={isLoading}>Share</Button>
