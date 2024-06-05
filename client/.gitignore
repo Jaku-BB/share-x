@@ -5,3 +5,4 @@ build
 .DS_Store
 .idea
 next-env.d.ts
+.env
