@@ -58,7 +58,9 @@ public class FileController : Controller
 
         if (string.IsNullOrEmpty(filePath)) return NotFound();
 
-        return PhysicalFile(filePath, "application/octet-stream");
+        string fileName = _fileStorageService.GetFileName(id);
+
+        return PhysicalFile(filePath, "application/octet-stream", fileName);
     }
 
     /// <response code="200">File exists</response>

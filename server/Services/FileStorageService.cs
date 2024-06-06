@@ -58,4 +58,12 @@ public class FileStorageService
 
         return File.Exists(filePath) ? filePath : string.Empty;
     }
+
+    public string GetFileName(string fileId)
+    {
+        var fileMap = GetFileMap();
+        var file = fileMap.FirstOrDefault(file => file.FileId == fileId);
+
+        return file == null ? string.Empty : file.OriginalFileName;
+    }
 }
