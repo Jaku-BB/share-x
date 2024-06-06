@@ -28,14 +28,13 @@ public class FileController : Controller
     [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(FileResponse))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
     [ProducesResponseType(StatusCodes.Status413RequestEntityTooLarge, Type = typeof(ErrorResponse))]
-    public IActionResult Task(IFormFile? file)
+    public IActionResult SaveFile(IFormFile? file)
     {
         if (file == null || file.Length == 0)
             return BadRequest(new ErrorResponse("File is empty!"));
 
         if (file.Length > MaximumFileSize)
             return StatusCode(StatusCodes.Status413RequestEntityTooLarge, new ErrorResponse("File is too large!"));
-
 
         string fileId = _fileStorageService.StoreFile(file);
 
@@ -53,12 +52,24 @@ public class FileController : Controller
     [Produces("application/octet-stream")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult Task(string id)
+    public IActionResult GetFile(string id)
     {
         string filePath = _fileStorageService.GetFilePath(id);
 
         if (string.IsNullOrEmpty(filePath)) return NotFound();
 
         return PhysicalFile(filePath, "application/octet-stream");
+    }
+
+    /// <response code="200">File exists</response>
+    /// <response code="404">File not found</response>
+    [HttpHead("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public IActionResult CheckFileExistence(string id)
+    {
+        string filePath = _fileStorageService.GetFilePath(id);
+
+        return string.IsNullOrEmpty(filePath) ? NotFound() : Ok();
     }
 }
