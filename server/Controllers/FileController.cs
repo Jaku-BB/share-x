@@ -28,7 +28,7 @@ public class FileController : Controller
     [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(FileResponse))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
     [ProducesResponseType(StatusCodes.Status413RequestEntityTooLarge, Type = typeof(ErrorResponse))]
-    public IActionResult SaveFile(IFormFile? file)
+    public IActionResult Task(IFormFile? file)
     {
         if (file == null || file.Length == 0)
             return BadRequest(new ErrorResponse("File is empty!"));
@@ -53,7 +53,7 @@ public class FileController : Controller
     [Produces("application/octet-stream")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public IActionResult GetFile(string id)
+    public IActionResult Task(string id)
     {
         string filePath = _fileStorageService.GetFilePath(id);
 
