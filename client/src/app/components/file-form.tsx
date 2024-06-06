@@ -13,6 +13,7 @@ interface FormData {
 }
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL as string;
+const BASE_SERVER_URL = process.env.NEXT_PUBLIC_BASE_SERVER_URL as string;
 
 export const FileForm = () => {
   const [isFileOverInput, setIsFileOverInput] = useState(false);
@@ -30,7 +31,7 @@ export const FileForm = () => {
     try {
       setIsLoading(true);
 
-      const response = await fetch(BASE_URL + "/file", {
+      const response = await fetch(BASE_SERVER_URL + "/file", {
         method: "POST",
         body: requestBody,
       });
@@ -66,7 +67,7 @@ export const FileForm = () => {
             aria-label="Copy URL"
             onClick={async () => {
               try {
-                const fileUrl = BASE_URL + "/" + fileId;
+                const fileUrl = BASE_URL + "/file/" + fileId;
                 await window.navigator.clipboard.writeText(fileUrl);
 
                 toast.success("Copied!");

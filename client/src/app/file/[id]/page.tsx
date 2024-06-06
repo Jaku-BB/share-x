@@ -4,10 +4,10 @@ import { FileDown } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL as string;
+const BASE_SERVER_URL = process.env.NEXT_PUBLIC_BASE_SERVER_URL as string;
 
 const checkFileExistence = async (id: string) => {
-  const fileServerRoute = BASE_URL + "/file/" + id;
+  const fileServerRoute = BASE_SERVER_URL + "/file/" + id;
 
   const response = await fetch(fileServerRoute, {
     method: "HEAD",
