@@ -27,7 +27,7 @@ public class FileStorageService
 
     public string StoreFile(IFormFile file)
     {
-        string fileId = Guid.NewGuid().ToString();
+        var fileId = Guid.NewGuid().ToString();
         string extension = Path.GetExtension(file.FileName);
 
         using FileStream stream = new(Path.Combine(_fileStoragePath, fileId + extension), FileMode.Create);

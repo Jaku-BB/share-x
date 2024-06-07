@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen(options =>
         Title = "ShareX API"
     });
 
-    string xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 
