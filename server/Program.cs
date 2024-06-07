@@ -3,6 +3,11 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowWebApp", policy => { policy.WithOrigins("https://share-x-client.vercel.app"); });
+});
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -24,6 +29,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+app.UseCors("AllowWebApp");
 app.MapControllers();
 
 app.Run();
