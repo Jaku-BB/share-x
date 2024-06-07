@@ -99,7 +99,7 @@ export const FileForm = () => {
         <div className="flex flex-col gap-4">
           <label
             className={classNameMerge(
-              'flex flex-col gap-3 cursor-pointer has-[[aria-invalid="true"]]:bg-rose-50 has-[[aria-invalid="true"]]:border-rose-400 relative border-dashed group has-[:focus]:outline has-[:focus]:outline-2 has-[:focus]:outline-offset-2 has-[:focus]:outline-blue-300 hover:border-indigo-400 hover:bg-indigo-50 transition-colors text-center py-4 px-8 border border-neutral-400 items-center rounded-xl',
+              'flex flex-col gap-3 has-[[aria-invalid="true"]]:bg-rose-50 has-[[aria-invalid="true"]]:border-rose-400 relative border-dashed group has-[:focus]:outline has-[:focus]:outline-2 has-[:focus]:outline-offset-2 has-[:focus]:outline-blue-300 hover:border-indigo-400 hover:bg-indigo-50 transition-colors text-center py-4 px-8 border border-neutral-400 items-center rounded-xl',
               isFileOverInput && "border-indigo-400 bg-indigo-50",
             )}
             onDragEnter={() => setIsFileOverInput(true)}
@@ -119,7 +119,7 @@ export const FileForm = () => {
             </span>
             <input
               type="file"
-              className="visually-hidden"
+              className="absolute cursor-pointer top-0 left-0 opacity-0 size-full block"
               aria-invalid={!!fileInputError}
               {...register("fileList", {
                 required: "File is required!",
@@ -128,6 +128,9 @@ export const FileForm = () => {
                     value[0].size <= 1024 * 1024 * 16 ||
                     "File size should be less than 16 MB!"
                   );
+                },
+                onChange: () => {
+                  setIsFileOverInput(false);
                 },
               })}
             />
