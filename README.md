@@ -7,6 +7,8 @@ Aplikacja internetowa **ShareX** pozwala użytkownikom na proste i szybkie udost
 Użytkownik chcąc udostępnić plik, przesyła go za pomocą formularza, a aplikacja generuje link, który pozwala na jego
 pobranie.
 
+Aplikację można przetestować pod adresem [https://share-x-client.vercel.app](https://share-x-client.vercel.app).
+
 [Dokumentacja API](https://share-x-api.azurewebsites.net/swagger)
 
 ## Stos technologiczny
