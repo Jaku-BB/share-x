@@ -9,7 +9,7 @@ pobranie.
 
 Aplikację można przetestować pod adresem [https://share-x-client.vercel.app](https://share-x-client.vercel.app).
 
-[Dokumentacja API](https://share-x-api.azurewebsites.net/swagger)
+[Dokumentacja API](https://webapp-240608175051.azurewebsites.net/swagger)
 
 ## Stos technologiczny
 
